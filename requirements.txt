@@ -1,0 +1,16 @@
+# WebSocket 通信
+websocket-client>=1.3.0
+rel>=0.4.0
+
+# 数据处理
+numpy>=1.21.0
+PyYAML>=5.4.0
+
+# ROS 相关（根据实际版本选择）
+# ROS1:
+rospy>=1.15.0
+# 或 ROS2:
+# rclpy>=3.0.0
+
+# 工具
+colorlog>=6.6.0

@@ -1,0 +1,37 @@
+# config/robot_config.yaml
+robot:
+  name: "wheeled_robot"
+  
+  # WebSocket 配置
+  websocket:
+    ip: "192.168.1.100"
+    port: 8080
+    timeout: 8
+    reconnect_interval: 5
+  
+  # ROS 配置
+  ros:
+    master_uri: "http://192.168.1.100:11311"
+    arm_topic: "/kuavo_arm_traj"
+    gripper_service: "/control_robot_leju_claw"
+    control_mode_service: "/arm_traj_change_mode"
+
+# 运动参数
+motion:
+  max_linear_speed: 0.5      # 最大线速度 (m/s)
+  max_angular_speed: 1.0     # 最大角速度 (rad/s)
+  default_speed: 0.15        # 默认移动速度
+  approach_distance: 0.3     # 接近物体的距离 (m)
+
+# 抓取参数
+grasp:
+  gripper_close_position: 90   # 闭合位置
+  gripper_open_position: 0     # 张开位置
+  pre_grasp_height: 0.15       # 预抓取高度 (m)
+  lift_height: 0.2             # 抓取后抬起高度 (m)
+  
+# 调试选项
+debug:
+  enable_log: true
+  log_level: "INFO"
+  save_images: false
