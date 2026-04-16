@@ -220,3 +220,37 @@ class WooshApi(WooshWebSocketClient):
         except Exception as e:
             logger.error(f"Error stopping robot: {e}")
             return False
+
+    def robot_lift_control(self, direction: str, height: float) -> bool:
+        """控制升降模组
+
+        Args:
+            direction: "up" 或 "down"
+            height: 升降高度（米），取绝对值后根据方向设正负
+
+        Returns:
+            bool: 成功返回 True
+        """
+        try:
+            height = abs(height)
+            if direction == "down":
+                height = -height
+            elif direction != "up":
+                logger.error(f"Invalid lift direction: {direction}. Use 'up' or 'down'")
+                return False
+
+            body = {
+                "lift_control2": {
+                    "height": height,
+                    "action": 1
+                }
+            }
+            result = self.request("woosh.ros.CallAction", body)
+            if result is None:
+                logger.error(f"Failed to control lift: {direction} {abs(height)}m")
+                return False
+            logger.info(f"Lift control: {direction} {abs(height)}m")
+            return True
+        except Exception as e:
+            logger.error(f"Error controlling lift: {e}")
+            return False
