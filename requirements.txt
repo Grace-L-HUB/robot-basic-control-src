@@ -8,7 +8,7 @@ PyYAML>=5.4.0
 
 # ROS Related (choose based on version)
 # ROS1:
-rospy>=1.15.0
+#rospy>=1.15.0
 # Or ROS2:
 # rclpy>=3.0.0
 
